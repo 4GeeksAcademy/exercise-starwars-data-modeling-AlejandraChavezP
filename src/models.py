@@ -7,23 +7,57 @@ from eralchemy2 import render_er
 
 Base = declarative_base()
 
-class Person(Base):
-    __tablename__ = 'person'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
+class User(Base):
+    __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+    nombre = Column(String(250), nullable=False)
+    apellido = Column(String(250), nullable=False)
+    fechadenacimiento = Column(String(250), nullable=False)
+    email = Column(String(250), nullable=False)
+    fechadesuscripcion = Column(String(250), nullable=False)
+    contrasena = Column(String(250), nullable=False)
 
-class Address(Base):
-    __tablename__ = 'address'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+class Planets(Base):
+    __tablename__ = 'planets'
     id = Column(Integer, primary_key=True)
-    street_name = Column(String(250))
-    street_number = Column(String(250))
-    post_code = Column(String(250), nullable=False)
-    person_id = Column(Integer, ForeignKey('person.id'))
-    person = relationship(Person)
+    nombre = Column(String(250), nullable=False)
+    poblacion = Column(String(250), nullable=False)
+    clima = Column(String(250), nullable=False)
+    idioma = Column(String(250), nullable=False)
+    terreno = Column(String(250), nullable=False)
+    oxigeno = Column(String(250), nullable=False)
+    creado = Column(String(250), nullable=False)
+    localizacion = Column(String(250), nullable=False)
+    gobernante = Column(String(250), nullable=False)
+    Residentes = Column(String(250), nullable=False)
+    Soles = Column(String(250), nullable=False)
+    lunas = Column(String(250), nullable=False)
+
+class Character(Base):
+    __tablename__ = 'character'
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String(250), nullable=False)
+    apellido = Column(String(250), nullable=False)
+    fechadenacimiento = Column(String(250), nullable=False)
+    home = Column(String(250), nullable=False)
+    raza = Column(String(250), nullable=False)
+    padres = Column(String(250), nullable=False)
+    conyugue = Column(String(250), nullable=False)
+    hijos = Column(String(250), nullable=False)
+    ocupacion = Column(String(250), nullable=False)
+    titulo = Column(String(250), nullable=False)
+    equipamiento = Column(String(250), nullable=False)
+    enemigos = Column(String(250), nullable=False)
+    afiliaciones = Column(String(250), nullable=False)
+
+class Favorites(Base):
+    __tablename__ = 'favorites'
+    user = relationship (User)
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String(250), nullable=False)
+    planets_id = Column(Integer, ForeignKey('planet.id'))
+    character_id = Column(Integer, ForeignKey('character.id'))
+   
 
     def to_dict(self):
         return {}
