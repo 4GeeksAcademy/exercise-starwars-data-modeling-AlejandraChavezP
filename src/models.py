@@ -49,14 +49,16 @@ class Character(Base):
     equipamiento = Column(String(250), nullable=False)
     enemigos = Column(String(250), nullable=False)
     afiliaciones = Column(String(250), nullable=False)
+    planets_id = Column(Integer, ForeignKey('planets.id'))
+    planets = relationship(Planets)
 
 class Favorites(Base):
     __tablename__ = 'favorites'
     user = relationship (User)
     id = Column(Integer, primary_key=True)
-    nombre = Column(String(250), nullable=False)
-    planets_id = Column(Integer, ForeignKey('planet.id'))
-    character_id = Column(Integer, ForeignKey('character.id'))
+    type = Column(String(100), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
    
 
     def to_dict(self):
